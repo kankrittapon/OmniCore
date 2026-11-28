@@ -42,12 +42,6 @@ public class ModNetwork {
                 .decoder(SyncPvPStatePacket::decode)
                 .consumerMainThread(SyncPvPStatePacket::handle)
                 .add();
-
-        CHANNEL.messageBuilder(DoubleJumpPacket.class, packetId++, NetworkDirection.PLAY_TO_SERVER)
-                .encoder(DoubleJumpPacket::encode)
-                .decoder(DoubleJumpPacket::decode)
-                .consumerMainThread(DoubleJumpPacket::handle)
-                .add();
     }
 
     public static void sendToAll(Object packet) {

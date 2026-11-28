@@ -41,14 +41,6 @@ public class OmniConfig {
     public final ForgeConfigSpec.ConfigValue<String> mobKillBlacklist;
     public final ForgeConfigSpec.DoubleValue mobKillMinHealth;
 
-    // [rpg_effects]
-    public final ForgeConfigSpec.BooleanValue rpgEffectsEnabled;
-    public final ForgeConfigSpec.BooleanValue multislashEnabled;
-    public final ForgeConfigSpec.DoubleValue shadowVeilBackstabMult;
-    public final ForgeConfigSpec.DoubleValue berserkLifestealPercent;
-    public final ForgeConfigSpec.DoubleValue titanDamageReduction;
-    public final ForgeConfigSpec.DoubleValue titanReflectPercent;
-
     static {
         Pair<OmniConfig, ForgeConfigSpec> specPair = new ForgeConfigSpec.Builder().configure(OmniConfig::new);
         SPEC = specPair.getRight();
@@ -186,37 +178,6 @@ public class OmniConfig {
         mobKillMinHealth = builder
                 .comment("เลือดขั้นต่ำของม็อบที่จะประกาศกลางจอ (HP Threshold ป้องกันลูกน้อง/มินเนียน)")
                 .defineInRange("mobKillMinHealth", 80.0, 1.0, 100000.0);
-
-        builder.pop();
-
-        builder.comment("==================================================================",
-                        " RPG Status Effects & Custom Enchantment Settings",
-                        "==================================================================")
-               .push("rpg_effects");
-
-        rpgEffectsEnabled = builder
-                .comment("เปิด/ปิดระบบ RPG 13 Status Effects & Combat Stances ทั้งหมด")
-                .define("enabled", true);
-
-        multislashEnabled = builder
-                .comment("เปิด/ปิดระบบมนต์สะกด Multislash (คมดาบกระจายคลื่นรูปพัด)")
-                .define("multislashEnabled", true);
-
-        shadowVeilBackstabMult = builder
-                .comment("ตัวคูณความเสียหายเมื่อแทงข้างหลัง (Backstab Multiplier) ในสถานะ Shadow Veil")
-                .defineInRange("shadowVeilBackstabMult", 2.5, 1.0, 10.0);
-
-        berserkLifestealPercent = builder
-                .comment("อัตราส่วนการดูดเลือด (Lifesteal Percentage) ในโหมด Berserk (0.15 = 15%)")
-                .defineInRange("berserkLifestealPercent", 0.15, 0.0, 1.0);
-
-        titanDamageReduction = builder
-                .comment("อัตราลดทอนความเสียหายในโหมด Titan Bastion (0.60 = ลด 60%)")
-                .defineInRange("titanDamageReduction", 0.60, 0.0, 1.0);
-
-        titanReflectPercent = builder
-                .comment("อัตราสะท้อนดาเมจคืนศัตรูในโหมด Titan Bastion (0.25 = 25%)")
-                .defineInRange("titanReflectPercent", 0.25, 0.0, 1.0);
 
         builder.pop();
     }
